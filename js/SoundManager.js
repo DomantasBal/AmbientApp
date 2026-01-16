@@ -18,4 +18,40 @@ export default class SoundManager {
       return false;
     }
   }
+
+  async playSound(soundId) {
+    const audio = this.audioElements.get(soundId);
+    if (audio) {
+      try {
+        await audio.play();
+        console.log(`Playing ${soundId}`);
+        return true;
+      } catch (e) {
+        console.error(`Failed to play: ${soundId}`, error);
+        return false;
+      }
+    }
+  }
+
+  pauseSound(soundId) {
+    const audio = this.audioElements.get(soundId);
+
+    if (audio && !audio.paused) {
+      audio.pause();
+      console.log(`Paused: ${soundId}`);
+    }
+  }
+
+  setVolume(soundId, volume) {
+    const audio = this.audioElements.get(soundId);
+
+    if (!audio) {
+      console.error(`Sound ${soundId} not found`);
+      return false;
+    }
+
+    audio.volume = volume / 100;
+    console.log(`Volume for ${soundId}: ${volume}`);
+    return true;
+  }
 }
