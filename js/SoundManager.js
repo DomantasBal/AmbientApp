@@ -24,7 +24,6 @@ export default class SoundManager {
     if (audio) {
       try {
         await audio.play();
-        console.log(`Playing ${soundId}`);
         return true;
       } catch (e) {
         console.error(`Failed to play: ${soundId}`, error);
@@ -38,7 +37,6 @@ export default class SoundManager {
 
     if (audio && !audio.paused) {
       audio.pause();
-      console.log(`Paused: ${soundId}`);
     }
   }
 
@@ -51,7 +49,6 @@ export default class SoundManager {
     }
 
     audio.volume = volume / 100;
-    console.log(`Volume for ${soundId}: ${volume}`);
     return true;
   }
 }
