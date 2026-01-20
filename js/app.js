@@ -55,6 +55,12 @@ class AmbientMixer {
         this.toggleAllSounds();
       });
     }
+
+    if (this.ui.resetButton) {
+      this.ui.resetButton.addEventListener('click', () => {
+        this.resetAll();
+      });
+    }
   }
 
   loadAllSounds() {
@@ -176,6 +182,12 @@ class AmbientMixer {
 
     this.soundManager.isPlaying = anySoundsPlaying;
     this.ui.updateMainPlayButton(anySoundsPlaying);
+  }
+
+  resetAll() {
+    this.soundManager.stopAll();
+    this.masterVolume = 100;
+    this.ui.resetUI();
   }
 }
 

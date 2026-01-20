@@ -125,4 +125,35 @@ export class UI {
       icon.classList.add('fa-play');
     }
   }
+
+  resetUI() {
+    // reset sliders
+    const sliders = document.querySelectorAll('.volume-slider');
+    sliders.forEach((slider) => {
+      slider.value = 0;
+      const soundId = slider.dataset.sound;
+      this.updateVolumeDisplay(soundId, 0);
+    });
+
+    // reset buttons
+    const playButtons = document.querySelectorAll('.play-btn');
+    playButtons.forEach((button) => {
+      const icon = button.querySelector('i');
+      icon.classList.remove('fa-pause');
+      icon.classList.add('fa-play');
+    });
+
+    // reset cards
+    const cards = document.querySelectorAll('.sound-cards');
+    cards.forEach((card) => {
+      card.classList.remove('fa-playing');
+    });
+
+    // reset main play button
+    this.updateMainPlayButton(false);
+
+    // reset master volume
+    this.masterVolumeSlider.value = 100;
+    this.masterVolumeValue.textContent = '100%';
+  }
 }
